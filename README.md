@@ -4,6 +4,7 @@ Description of all micro-services
 
 ## Table of content
 
+- [General System Info](#General-System-Info)
 - [Auth micro-service](#auth-micro-service)
     - [General info](#Auth-General-info)
     - [External API](#Auth-External-API)
@@ -12,6 +13,12 @@ Description of all micro-services
     - [General info](#Accounts-General-info)
     - [External API](#Accounts-External-API)
     - [Internal API](#Accounts-Internal-API)
+
+## General System Info
+
+System Architecture
+![System Architecture SVG was here](./micro-services.svg)
+<img src="./micro-services.svg">
 
 ## Auth micro-service
 
@@ -115,11 +122,12 @@ Description of all micro-services
 ### Accounts Internal API
 
 1.  `/verify_account` [POST]:
-    -   Verify account via login+password / account_id+password
+    -   Verify account via login + password / account_id + password
     -   IN:
         -   `login` [OPTIONAL]
         -   `account_id` [OPTIONAL]
         -   `password`
     -   OUT:
-        -   `201 OK`
-        -   `401 Not verified`
+        -   `201 OK` with `account_id` and 'role'
+        -   `404 User not found`
+        -   `422 Incorrect password`
