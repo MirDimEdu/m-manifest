@@ -115,7 +115,7 @@ Description of all micro-services
 ### Accounts Internal API
 
 1.  `/verify_account` [POST]:
-    -   Verify account via login+password / account_id
+    -   Verify account via login+password / account_id+password
     -   IN:
         -   `login` [OPTIONAL]
         -   `account_id` [OPTIONAL]
