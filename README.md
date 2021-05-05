@@ -18,7 +18,6 @@ Description of all micro-services
 
 System Architecture
 ![System Architecture SVG was here](./micro-services.svg)
-<img src="./micro-services.svg">
 
 ## Auth micro-service
 
