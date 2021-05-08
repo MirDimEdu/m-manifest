@@ -54,6 +54,8 @@ System Architecture
 
 3.  Start with `python3 main.py` or `nohup python3 main.py > bot.log &` (if needs to start in background with logs to bot.log)
 
+4. Use `--create-table` start parameter if start service first time or if want to drop tables (excluding m-frontend-python)
+
 
 ## Auth micro-service
 
