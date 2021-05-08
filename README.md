@@ -68,11 +68,8 @@ System Architecture
 
 ### Auth External API
 
-1.  `/is_auth` [POST]:
-    -   Check auth
-    -   IN:
-        -   `name` - token name in cookies
-        -   `data` - token data
+1.  `/is_auth` [GET]:
+    -   Check auth from cookie
     -   OUT:
         -   `200 OK`
         -   `401 Unauthorized` with description
