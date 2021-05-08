@@ -5,7 +5,7 @@ Description of all micro-services
 ## Table of content
 
 - [General System Info](#General-System-Info)
-- [Install and Run](#[Install-and-Run)
+- [Install and Run](#Install-and-Run)
 - [Auth micro-service](#auth-micro-service)
     - [General info](#Auth-General-info)
     - [External API](#Auth-External-API)
