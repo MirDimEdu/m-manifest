@@ -18,6 +18,10 @@ Description of all micro-services
     - [General info](#Topics-General-info)
     - [External API](#Topics-External-API)
     - [Internal API](#Topics-Internal-API)
+- [Events micro-service](#events-micro-service)
+    - [General info](#Events-General-info)
+    - [External API](#Events-External-API)
+    - [Internal API](#Events-Internal-API)
 
 ## General System Info
 
@@ -48,7 +52,7 @@ System Architecture
 
 ### Running (for m-auth, m-accounts, m-topics, m-events, m-frontend-python)
 
-1.  Service takes its settings through environment variables, so rename `setup.sh.template` to `setup.sh` and fill your data
+1.  Service takes its settings through environment variables, so copy and rename `setup.sh.template` to `setup.sh` and fill your data
 
 2.  Initialize environment variables through `. setup.sh` / `source setup.sh`
 
@@ -209,12 +213,14 @@ System Architecture
     -   Get post info by it's `post_id`
     -   OUT:
         -   `200 OK` with post info
+        -   `404 Post not found`
 
 4.  `/post/{post_id}/delete` [DELETE] - LOGIN REQUIRED:
     -   Delete post by it's `post_id`
     -   OUT:
         -   `200 OK`
         -   `403 Permission denied`
+        -   `404 Post not found`
 
 5.  `/post/{post_id}/comment/add` [POST] - LOGIN REQUIRED:
     -   Add comment to post by `post_id`
@@ -222,6 +228,7 @@ System Architecture
         -   `text`
     -   OUT:
         -   `201 OK`
+        -   `404 Post not found`
 
 6.  `/post/{post_id}/comments/all` [GET]:
     -   Get all post comments by `post_id`
@@ -230,14 +237,68 @@ System Architecture
         -   `limit` [OPTIONAL QUERRY STRING]
     -   OUT:
         -   `200 OK` with comments list
+        -   `404 Post not found`
         -   `422 Offset or limit has wrong values`
 
 7.  `/comment/{comment_id}/delete` [DELETE] - LOGIN REQUIRED:
     -   Delete comment by it's `comment_id`
     -   OUT:
         -   `200 OK`
+        -   `404 Comment not found`
         -   `403 Permission denied`
 
 ### Topics Internal API
+
+None)
+
+
+## Events micro-service
+
+### Events General info
+
+- Host (local / aws): 0.0.0.0 / 
+- Post: 8004
+
+### Events External API
+
+1.  `/event/create` [POST] - LOGIN REQUIRED:
+    -   Create event
+    -   IN:
+        -   `title`
+        -   `description`
+        -   `location`
+        -   `event_date`
+    -   OUT:
+        -   `201 OK`
+
+2.  `/events/all` [GET]:
+    -   Get all events
+    -   IN:
+        -   `offset` [OPTIONAL QUERRY STRING]
+        -   `limit` [OPTIONAL QUERRY STRING]
+    -   OUT:
+        -   `200 OK` with events list
+        -   `422 Offset or limit has wrong values`
+
+3.  `/event/{event_id}` [GET]:
+    -   Get event info by it's `event_id`
+    -   OUT:
+        -   `200 OK` with event info
+        -   `404 Event not found`
+
+4.  `/event/{event_id}/join` [GET] - LOGIN REQUIRED:
+    -   Join event by it's `event_id`
+    -   OUT:
+        -   `200 OK`
+        -   `404 Event not found`
+        -   `409 Already joined`
+
+5.  `/event/{event_id}/leave` [GET] - LOGIN REQUIRED:
+    -   Leave event by it's `event_id`
+    -   OUT:
+        -   `200 OK`
+        -   `404 Event not found`
+
+### Events Internal API
 
 None)
